@@ -1,0 +1,11 @@
+beautifulsoup4==4.8.2                                                                                                                                                                                              
+certifi==2020.4.5                                                                                                                                                                                                  
+chardet==3.0.4                                                                                                                                                                                                     
+idna==2.9                                                                                                                                                                                                          
+nltk==3.4.5                                                                                                                                                                                                        
+pkg-resources==0.0.0                                                                                                                                                                                               
+requests==2.23.0                                                                                                                                                                                                   
+six==1.14.0                                                                                                                                                                                                        
+soupsieve==2.0                                                                                                                                                                                                     
+urllib3==1.25.8                                                                                                                                                                                                    
+wikipedia==1.4.0 
