@@ -1,10 +1,10 @@
-<p style="text-align:center"><img src="./Images/icon.jpg" width="80"></img></p>
-<h1 style="text-align:center; margin-top:-10pt">Wiki Summarizer Slack Bot</h1>
-<p style="text-align:center">
+<p align="center"><img src="./Images/icon.jpg" width="80"></img></p>
+<h1 align="center">Wiki Summarizer Slack Bot</h1>
+<p align="center">
     <img src="https://img.shields.io/badge/Made%20With-Python-blue"></img>
     <img src="https://img.shields.io/github/license/tezansahu/WikiSummarizer_SlackBot"></img>
 </p>
-<p style="text-align:center">A Slack Bot that provides a short Summary of requested topic(s) from Wikipedia</p>
+<p align="center">A Slack Bot that provides a short Summary of requested topic(s) from Wikipedia</p>
 
 ***
 
@@ -59,4 +59,4 @@ Now, fire up 2 terminals. In the first one, type `python slackbot.py` (to set up
 And...We are done! Now you can go to your workspace & start taking to the WikiSummarizer Bot in the selected `#channel`.
 ***
 
-<p style="text-align:center">Created with :heart: by <a href="https://www.linkedin.com/in/tezan-sahu/">Tezan Sahu</a></p>
+<p align="center">Created with :heart: by <a href="https://www.linkedin.com/in/tezan-sahu/">Tezan Sahu</a></p>
