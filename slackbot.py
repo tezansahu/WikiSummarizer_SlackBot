@@ -141,9 +141,7 @@ class WikiSummarizerBot:
             msg_payload = {}
             if "%s" % self.bot_id in event["text"]:
                 try:
-                    print("\n\nMsg directed for Bot\n\n")
                     if event["text"].split()[1] == "summarize":
-                        print("\n\nSummarize\n\n")
                         search = re.search('\"(.*?)\"', event["text"])
                         topic = search.group(1)
                         if search.end() == len(event["text"]):
@@ -153,17 +151,14 @@ class WikiSummarizerBot:
                             msg_payload = self.getSummaryMsg(event["channel"], topic, num_lines)
                     
                     elif any(word in event["text"].lower() for word in self.intro_keywords):
-                        print("\n\nIntro\n\n")
                         msg_payload = self.getIntroMsg(event["channel"])
 
                     else:
-                        print("\n\nError\n\n")
                         msg_payload = self.getErrorMsg(event["channel"])
                     
                     response = self.client.chat_postMessage(**msg_payload)
                 
                 except Exception as e:
-                    print("\n\nPg not found\n\n")
                     msg_payload = self.getPageErrorMsg(event["channel"])
                     response = self.client.chat_postMessage(**msg_payload)
         return {}

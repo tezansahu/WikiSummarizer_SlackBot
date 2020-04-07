@@ -17,12 +17,10 @@ async def root():
 
 @app.post("/")
 async def root(reqbody: dict):
-    print("\n", reqbody)
     if "challenge" in reqbody:
         return {"challenge": reqbody["challenge"]}
     else:
         if "event" in reqbody:
-            # handleEvent(reqbody["event"])
             zmq_socket.send_json(reqbody["event"])
             return zmq_socket.recv_json()
         return {}
