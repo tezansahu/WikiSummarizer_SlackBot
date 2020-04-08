@@ -57,6 +57,13 @@ SLACK_TOKEN=<copied-token>
 Now, fire up 2 terminals. In the first one, type `python slackbot.py` (to set up the Bot Service) & in the other one, type `uvicorn server:app` (to set up the local server, linked to the tunnel).
 
 And...We are done! Now you can go to your workspace & start taking to the WikiSummarizer Bot in the selected `#channel`.
+
+## Using the WikiSummarizer Bot
+
+* Greet the bot by referencing it with a "Hi", "Hello" or "Yo" (Example: `Hi @WikiSummarizerBot`). This will present you with the guidelines of interacting with the bot.
+* To obtain a summary of a `<topic>`, type `@WikiSummarizerBot summarize "<topic>"`
+* To obtain a summary of a `<topic>` containing `<num-lines>` sentences, type `@WikiSummarizerBot summarize "<topic>" <num-lines>`
+
 ***
 
 <p align="center">Created with :heart: by <a href="https://www.linkedin.com/in/tezan-sahu/">Tezan Sahu</a></p>
