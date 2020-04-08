@@ -9,7 +9,10 @@ class WikiSummarizer:
         self.ps = nltk.stem.PorterStemmer()
 
     def __getWikiArticle(self, topic):
-        wikisearch = wiki.page(topic)
+        try:
+            wikisearch = wiki.page(topic)
+        except wiki.exceptions.PageError as e:
+            return "PageError"
         article_text = wikisearch.content 
         formatted_article_text = re.sub(r'\[[0-9]*\]', ' ', article_text) 
         formatted_article_text = re.sub(r'\s+', ' ', formatted_article_text)
@@ -47,6 +50,8 @@ class WikiSummarizer:
     
     def getSummary(self, topic, num_sent=7, sent_lim=30):
         article = self.__getWikiArticle(topic)
+        if article == "PageError":
+            return article
         sentence_scores = self.__calculateSentenceScores(article, sent_lim)
         summary_sentences = heapq.nlargest(num_sent, sentence_scores, key=sentence_scores.get)
         summary = ' '.join(summary_sentences)

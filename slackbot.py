@@ -29,21 +29,21 @@ class WikiSummarizerBot:
         }
     }
 
-    PROCESSING_ERR_BLOCK = {
+    ERR_BLOCK = {
         "type": "section",
         "text": {
             "type": "mrkdwn",
-            "text": 'Uh oh! There was some error processing your request :sweat:. Please try again later...'
+            "text": ''
         }
     }
 
-    PG_ERR_BLOCK = {
-        "type": "section",
-        "text": {
-            "type": "mrkdwn",
-            "text": 'Sorry! Unable to find the requested page'
-        }
-    }
+    # PGERR_BLOCK = {
+    #     "type": "section",
+    #     "text": {
+    #         "type": "mrkdwn",
+    #         "text": 'Sorry! Unable to find the requested page'
+    #     }
+    # }
 
     def __init__(self, port=8500):
         print("Initializing WikiSummarizer Bot...")
@@ -81,6 +81,9 @@ class WikiSummarizerBot:
     def getSummaryMsg(self, channel, topic, num_lines=7):
         summary = self.wiki_summarizer.getSummary(topic, num_lines)
 
+        if summary == "PageError":
+            return self.getErrorMsg(channel, "PageNotFoundError")
+
         msg_payload = {
             "channel": channel,
             "icon_emoji": ":robot_face:",
@@ -110,28 +113,37 @@ class WikiSummarizerBot:
         return msg_payload
 
 
-
-    def getErrorMsg(self, channel):
+    def getErrorMsg(self, channel, err_type):
+        print(err_type)
+        
         msg_payload = {
             "channel": channel,
             "icon_emoji": ":robot_face:",
             "blocks": [
-                self.PROCESSING_ERR_BLOCK
+                self.ERR_BLOCK
             ]
         }
+
+        if err_type == "ProcessingError":
+            msg_payload["blocks"][0]["text"]["text"] = "Uh oh! There was some error processing your request :sweat:. Please try again later..."
+        elif err_type == "PageNotFoundError":
+            msg_payload["blocks"][0]["text"]["text"] = "Sorry! Unable to find the requested page"
+        elif err_type == "InvalidRequestError":
+            msg_payload["blocks"][0]["text"]["text"] = "Umm...I do not understand how to handle this request :sweat:. Currently I am only trained to summarize topics. Please follow the syntax for doing so: "
+            msg_payload["blocks"] = msg_payload["blocks"] + [self.DIVIDER_BLOCK, self.INSTR_BLOCK]
 
         return msg_payload
     
-    def getPageErrorMsg(self, channel):
-        msg_payload = {
-            "channel": channel,
-            "icon_emoji": ":robot_face:",
-            "blocks": [
-                self.PG_ERR_BLOCK
-            ]
-        }
+    # def getPageErrorMsg(self, channel):
+    #     msg_payload = {
+    #         "channel": channel,
+    #         "icon_emoji": ":robot_face:",
+    #         "blocks": [
+    #             self.PG_ERR_BLOCK
+    #         ]
+    #     }
 
-        return msg_payload
+    #     return msg_payload
 
 
     def handleEvent(self, event):
@@ -150,16 +162,16 @@ class WikiSummarizerBot:
                             num_lines = int(event["text"][search.end()+1:])
                             msg_payload = self.getSummaryMsg(event["channel"], topic, num_lines)
                     
-                    elif any(word in event["text"].lower() for word in self.intro_keywords):
+                    elif event["text"].lower().split()[0] in self.intro_keywords:
                         msg_payload = self.getIntroMsg(event["channel"])
 
                     else:
-                        msg_payload = self.getErrorMsg(event["channel"])
+                        msg_payload = self.getErrorMsg(event["channel"], "InvalidRequestError")
                     
                     response = self.client.chat_postMessage(**msg_payload)
                 
                 except Exception as e:
-                    msg_payload = self.getPageErrorMsg(event["channel"])
+                    msg_payload = self.getErrorMsg(event["channel"], "ProcessingError")
                     response = self.client.chat_postMessage(**msg_payload)
         return {}
             
