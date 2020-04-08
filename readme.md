@@ -63,6 +63,8 @@ And...We are done! Now you can go to your workspace & start taking to the WikiSu
 * Greet the bot by referencing it with a "Hi", "Hello" or "Yo" (Example: `Hi @WikiSummarizerBot`). This will present you with the guidelines of interacting with the bot.
 * To obtain a summary of a `<topic>`, type `@WikiSummarizerBot summarize "<topic>"`
 * To obtain a summary of a `<topic>` containing `<num-lines>` sentences, type `@WikiSummarizerBot summarize "<topic>" <num-lines>`
+* To obtain a summary of multiple topics `<topic-1>`, `<topic-2>`, etc., type `@WikiSummarizerBot summarize "<topic-1>" "<topic-2>" ...`
+* To obtain a summary of multiple topics `<topic-1>`, `<topic-2>`, etc. containing `<num-lines>` sentences, type `@WikiSummarizerBot summarize "<topic-1>" "<topic-2>" ... <num-lines>`
 
 ***
 
