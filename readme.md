@@ -1,8 +1,8 @@
-<p align="center"><img src="./Images/icon.jpg" width="80"></img></p>
+<p align="center"><img src="./Images/icon.jpg" width="80"></p>
 <h1 align="center">Wiki Summarizer Slack Bot</h1>
 <p align="center">
-    <img src="https://img.shields.io/badge/Made%20With-Python-blue"></img>
-    <img src="https://img.shields.io/github/license/tezansahu/WikiSummarizer_SlackBot"></img>
+    <img src="https://img.shields.io/badge/Made%20With-Python-blue">
+    <img src="https://img.shields.io/github/license/tezansahu/WikiSummarizer_SlackBot">
 </p>
 <p align="center">A Slack Bot that provides a short Summary of requested topic(s) from Wikipedia</p>
 
@@ -13,7 +13,7 @@
 This is a Slack App designed to interact with users & help them summarize articles from Wikipedia. This bot provides a short summary (number of sentences can be specified as well) of any requested topic.
 
 ## A Glimpse of the Bot
-<img src="./Images/screenshot.png"></img>
+<img src="./Images/screenshot.png">
 
 ## Setting Up the WikiSummarizer Bot
 
