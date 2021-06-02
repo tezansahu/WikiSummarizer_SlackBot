@@ -26,7 +26,7 @@ slackclient==2.5.0
 soupsieve==2.0
 starlette==0.13.2
 typing-extensions==3.7.4.2
-urllib3==1.25.8
+urllib3==1.26.5
 uvicorn==0.11.3
 uvloop==0.14.0
 websockets==8.1
